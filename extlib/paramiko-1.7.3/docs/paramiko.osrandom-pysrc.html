@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>paramiko.osrandom</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="paramiko-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="paramiko-module.html">Package&nbsp;paramiko</a> ::
+        Module&nbsp;osrandom
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="paramiko.osrandom-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="paramiko.osrandom-module.html" onclick="show_private();">Module paramiko.osrandom</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># -*- coding: ascii -*-</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Copyright (C) 2008  Dwayne C. Litzenberger &lt;dlitz@dlitz.net&gt;</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># This file is part of paramiko.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Paramiko is free software; you can redistribute it and/or modify it under the</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># terms of the GNU Lesser General Public License as published by the Free</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Software Foundation; either version 2.1 of the License, or (at your option)</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># any later version.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Paramiko is distrubuted in the hope that it will be useful, but WITHOUT ANY</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># details.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># You should have received a copy of the GNU Lesser General Public License</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># along with Paramiko; if not, write to the Free Software Foundation, Inc.,</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment">##</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">## Find potential random number sources</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">##</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment"># Try to open /dev/urandom now so that paramiko will be able to access</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># it even if os.chroot() is invoked later.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">    <tt id="link-0" class="py-name" targets="Variable paramiko.osrandom._dev_urandom=paramiko.osrandom-module.html#_dev_urandom"><a title="paramiko.osrandom._dev_urandom" class="py-name" href="#" onclick="return doclink('link-0', '_dev_urandom', 'link-0');">_dev_urandom</a></tt> <tt class="py-op">=</tt> <tt id="link-1" class="py-name" targets="Method paramiko.SFTPServerInterface.open()=paramiko.SFTPServerInterface-class.html#open"><a title="paramiko.SFTPServerInterface.open" class="py-name" href="#" onclick="return doclink('link-1', 'open', 'link-1');">open</a></tt><tt class="py-op">(</tt><tt class="py-string">"/dev/urandom"</tt><tt class="py-op">,</tt> <tt class="py-string">"rb"</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-keyword">except</tt> <tt class="py-name">EnvironmentError</tt><tt class="py-op">:</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">    <tt id="link-2" class="py-name"><a title="paramiko.osrandom._dev_urandom" class="py-name" href="#" onclick="return doclink('link-2', '_dev_urandom', 'link-0');">_dev_urandom</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-comment"># Try to import the "winrandom" module</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">    <tt class="py-keyword">from</tt> <tt class="py-name">Crypto</tt><tt class="py-op">.</tt><tt class="py-name">Util</tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Variable paramiko.osrandom.winrandom=paramiko.osrandom-module.html#winrandom"><a title="paramiko.osrandom.winrandom" class="py-name" href="#" onclick="return doclink('link-3', 'winrandom', 'link-3');">winrandom</a></tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-keyword">except</tt> <tt class="py-name">ImportError</tt><tt class="py-op">:</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">    <tt id="link-4" class="py-name"><a title="paramiko.osrandom.winrandom" class="py-name" href="#" onclick="return doclink('link-4', 'winrandom', 'link-3');">winrandom</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-comment"># Lastly, try to get the plain "RandomPool"</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># (sometimes windows doesn't even have winrandom!)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">    <tt class="py-keyword">from</tt> <tt class="py-name">Crypto</tt><tt class="py-op">.</tt><tt class="py-name">Util</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Variable paramiko.auth_handler.randpool=paramiko.auth_handler-module.html#randpool,Variable paramiko.channel.randpool=paramiko.channel-module.html#randpool,Variable paramiko.client.randpool=paramiko.client-module.html#randpool,Variable paramiko.common.randpool=paramiko.common-module.html#randpool,Variable paramiko.dsskey.randpool=paramiko.dsskey-module.html#randpool,Variable paramiko.hostkeys.randpool=paramiko.hostkeys-module.html#randpool,Variable paramiko.kex_gex.randpool=paramiko.kex_gex-module.html#randpool,Variable paramiko.kex_group1.randpool=paramiko.kex_group1-module.html#randpool,Variable paramiko.packet.randpool=paramiko.packet-module.html#randpool,Variable paramiko.pkey.randpool=paramiko.pkey-module.html#randpool,Variable paramiko.rsakey.randpool=paramiko.rsakey-module.html#randpool,Variable paramiko.server.randpool=paramiko.server-module.html#randpool,Variable paramiko.sftp.randpool=paramiko.sftp-module.html#randpool,Variable paramiko.sftp_attr.randpool=paramiko.sftp_attr-module.html#randpool,Variable paramiko.sftp_client.randpool=paramiko.sftp_client-module.html#randpool,Variable paramiko.sftp_file.randpool=paramiko.sftp_file-module.html#randpool,Variable paramiko.sftp_handle.randpool=paramiko.sftp_handle-module.html#randpool,Variable paramiko.sftp_server.randpool=paramiko.sftp_server-module.html#randpool,Variable paramiko.sftp_si.randpool=paramiko.sftp_si-module.html#randpool,Variable paramiko.transport.randpool=paramiko.transport-module.html#randpool,Variable paramiko.util.randpool=paramiko.util-module.html#randpool"><a title="paramiko.auth_handler.randpool
+paramiko.channel.randpool
+paramiko.client.randpool
+paramiko.common.randpool
+paramiko.dsskey.randpool
+paramiko.hostkeys.randpool
+paramiko.kex_gex.randpool
+paramiko.kex_group1.randpool
+paramiko.packet.randpool
+paramiko.pkey.randpool
+paramiko.rsakey.randpool
+paramiko.server.randpool
+paramiko.sftp.randpool
+paramiko.sftp_attr.randpool
+paramiko.sftp_client.randpool
+paramiko.sftp_file.randpool
+paramiko.sftp_handle.randpool
+paramiko.sftp_server.randpool
+paramiko.sftp_si.randpool
+paramiko.transport.randpool
+paramiko.util.randpool" class="py-name" href="#" onclick="return doclink('link-5', 'randpool', 'link-5');">randpool</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">RandomPool</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-keyword">except</tt> <tt class="py-name">ImportError</tt><tt class="py-op">:</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">    <tt class="py-name">RandomPool</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-comment">##</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">## Define RandomPool classes</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">##</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="_workaround_windows_cryptgenrandom_bug"></a><div id="_workaround_windows_cryptgenrandom_bug-def"><a name="L52"></a><tt class="py-lineno"> 52</tt> <a class="py-toggle" href="#" id="_workaround_windows_cryptgenrandom_bug-toggle" onclick="return toggle('_workaround_windows_cryptgenrandom_bug');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom-module.html#_workaround_windows_cryptgenrandom_bug">_workaround_windows_cryptgenrandom_bug</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_workaround_windows_cryptgenrandom_bug-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="_workaround_windows_cryptgenrandom_bug-expanded"><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">    <tt class="py-comment"># According to "Cryptanalysis of the Random Number Generator of the</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt class="py-comment"># Windows Operating System", by Leo Dorrendorf and Zvi Gutterman</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt class="py-comment"># and Benny Pinkas &lt;http://eprint.iacr.org/2007/419&gt;,</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt class="py-comment"># CryptGenRandom only updates its internal state using kernel-provided</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt class="py-comment"># random data every 128KiB of output.</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method paramiko.Message.get_bytes()=paramiko.Message-class.html#get_bytes,Method paramiko.osrandom.DevUrandomPool.get_bytes()=paramiko.osrandom.DevUrandomPool-class.html#get_bytes,Method paramiko.osrandom.FallbackRandomPool.get_bytes()=paramiko.osrandom.FallbackRandomPool-class.html#get_bytes,Method paramiko.osrandom.OSRandomPool.get_bytes()=paramiko.osrandom.OSRandomPool-class.html#get_bytes"><a title="paramiko.Message.get_bytes
+paramiko.osrandom.DevUrandomPool.get_bytes
+paramiko.osrandom.FallbackRandomPool.get_bytes
+paramiko.osrandom.OSRandomPool.get_bytes" class="py-name" href="#" onclick="return doclink('link-6', 'get_bytes', 'link-6');">get_bytes</a></tt><tt class="py-op">(</tt><tt class="py-number">128</tt><tt class="py-op">*</tt><tt class="py-number">1024</tt><tt class="py-op">)</tt>    <tt class="py-comment"># discard 128 KiB of output</tt> </tt>
+</div><a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"> </tt>
+<a name="BaseOSRandomPool"></a><div id="BaseOSRandomPool-def"><a name="L61"></a><tt class="py-lineno"> 61</tt> <a class="py-toggle" href="#" id="BaseOSRandomPool-toggle" onclick="return toggle('BaseOSRandomPool');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="paramiko.osrandom.BaseOSRandomPool-class.html">BaseOSRandomPool</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseOSRandomPool-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="BaseOSRandomPool-expanded"><a name="BaseOSRandomPool.__init__"></a><div id="BaseOSRandomPool.__init__-def"><a name="L62"></a><tt class="py-lineno"> 62</tt> <a class="py-toggle" href="#" id="BaseOSRandomPool.__init__-toggle" onclick="return toggle('BaseOSRandomPool.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.BaseOSRandomPool-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">numbytes</tt><tt class="py-op">=</tt><tt class="py-number">160</tt><tt class="py-op">,</tt> <tt class="py-param">cipher</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">hash</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseOSRandomPool.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseOSRandomPool.__init__-expanded"><a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"> </tt>
+<a name="BaseOSRandomPool.stir"></a><div id="BaseOSRandomPool.stir-def"><a name="L65"></a><tt class="py-lineno"> 65</tt> <a class="py-toggle" href="#" id="BaseOSRandomPool.stir-toggle" onclick="return toggle('BaseOSRandomPool.stir');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.BaseOSRandomPool-class.html#stir">stir</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">s</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseOSRandomPool.stir-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseOSRandomPool.stir-expanded"><a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"> </tt>
+<a name="BaseOSRandomPool.randomize"></a><div id="BaseOSRandomPool.randomize-def"><a name="L68"></a><tt class="py-lineno"> 68</tt> <a class="py-toggle" href="#" id="BaseOSRandomPool.randomize-toggle" onclick="return toggle('BaseOSRandomPool.randomize');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.BaseOSRandomPool-class.html#randomize">randomize</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">N</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseOSRandomPool.randomize-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseOSRandomPool.randomize-expanded"><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method paramiko.osrandom.BaseOSRandomPool.stir()=paramiko.osrandom.BaseOSRandomPool-class.html#stir,Method paramiko.osrandom.OSRandomPool.stir()=paramiko.osrandom.OSRandomPool-class.html#stir,Method paramiko.osrandom.WinRandomPool.stir()=paramiko.osrandom.WinRandomPool-class.html#stir"><a title="paramiko.osrandom.BaseOSRandomPool.stir
+paramiko.osrandom.OSRandomPool.stir
+paramiko.osrandom.WinRandomPool.stir" class="py-name" href="#" onclick="return doclink('link-7', 'stir', 'link-7');">stir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"> </tt>
+<a name="BaseOSRandomPool.add_event"></a><div id="BaseOSRandomPool.add_event-def"><a name="L71"></a><tt class="py-lineno"> 71</tt> <a class="py-toggle" href="#" id="BaseOSRandomPool.add_event-toggle" onclick="return toggle('BaseOSRandomPool.add_event');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.BaseOSRandomPool-class.html#add_event">add_event</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">s</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BaseOSRandomPool.add_event-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="BaseOSRandomPool.add_event-expanded"><a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div></div><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
+<a name="WinRandomPool"></a><div id="WinRandomPool-def"><a name="L75"></a><tt class="py-lineno"> 75</tt> <a class="py-toggle" href="#" id="WinRandomPool-toggle" onclick="return toggle('WinRandomPool');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="paramiko.osrandom.WinRandomPool-class.html">WinRandomPool</a><tt class="py-op">(</tt><tt class="py-base-class">BaseOSRandomPool</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WinRandomPool-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="WinRandomPool-expanded"><a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt class="py-docstring">"""RandomPool that uses the C{winrandom} module for input"""</tt> </tt>
+<a name="WinRandomPool.__init__"></a><div id="WinRandomPool.__init__-def"><a name="L77"></a><tt class="py-lineno"> 77</tt> <a class="py-toggle" href="#" id="WinRandomPool.__init__-toggle" onclick="return toggle('WinRandomPool.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.WinRandomPool-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">numbytes</tt><tt class="py-op">=</tt><tt class="py-number">160</tt><tt class="py-op">,</tt> <tt class="py-param">cipher</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">hash</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WinRandomPool.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WinRandomPool.__init__-expanded"><a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_wr</tt> <tt class="py-op">=</tt> <tt id="link-8" class="py-name"><a title="paramiko.osrandom.winrandom" class="py-name" href="#" onclick="return doclink('link-8', 'winrandom', 'link-3');">winrandom</a></tt><tt class="py-op">.</tt><tt class="py-name">new</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="paramiko.Message.get_bytes
+paramiko.osrandom.DevUrandomPool.get_bytes
+paramiko.osrandom.FallbackRandomPool.get_bytes
+paramiko.osrandom.OSRandomPool.get_bytes" class="py-name" href="#" onclick="return doclink('link-9', 'get_bytes', 'link-6');">get_bytes</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_wr</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="paramiko.Message.get_bytes
+paramiko.osrandom.DevUrandomPool.get_bytes
+paramiko.osrandom.FallbackRandomPool.get_bytes
+paramiko.osrandom.OSRandomPool.get_bytes" class="py-name" href="#" onclick="return doclink('link-10', 'get_bytes', 'link-6');">get_bytes</a></tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method paramiko.osrandom.BaseOSRandomPool.randomize()=paramiko.osrandom.BaseOSRandomPool-class.html#randomize,Method paramiko.osrandom.OSRandomPool.randomize()=paramiko.osrandom.OSRandomPool-class.html#randomize"><a title="paramiko.osrandom.BaseOSRandomPool.randomize
+paramiko.osrandom.OSRandomPool.randomize" class="py-name" href="#" onclick="return doclink('link-11', 'randomize', 'link-11');">randomize</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="WinRandomPool.stir"></a><div id="WinRandomPool.stir-def"><a name="L82"></a><tt class="py-lineno"> 82</tt> <a class="py-toggle" href="#" id="WinRandomPool.stir-toggle" onclick="return toggle('WinRandomPool.stir');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.WinRandomPool-class.html#stir">stir</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">s</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WinRandomPool.stir-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WinRandomPool.stir-expanded"><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-name">_workaround_windows_cryptgenrandom_bug</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"> </tt>
+<a name="DevUrandomPool"></a><div id="DevUrandomPool-def"><a name="L86"></a><tt class="py-lineno"> 86</tt> <a class="py-toggle" href="#" id="DevUrandomPool-toggle" onclick="return toggle('DevUrandomPool');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="paramiko.osrandom.DevUrandomPool-class.html">DevUrandomPool</a><tt class="py-op">(</tt><tt class="py-base-class">BaseOSRandomPool</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DevUrandomPool-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DevUrandomPool-expanded"><a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">    <tt class="py-docstring">"""RandomPool that uses the C{/dev/urandom} special device node for input"""</tt> </tt>
+<a name="DevUrandomPool.__init__"></a><div id="DevUrandomPool.__init__-def"><a name="L88"></a><tt class="py-lineno"> 88</tt> <a class="py-toggle" href="#" id="DevUrandomPool.__init__-toggle" onclick="return toggle('DevUrandomPool.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.DevUrandomPool-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">numbytes</tt><tt class="py-op">=</tt><tt class="py-number">160</tt><tt class="py-op">,</tt> <tt class="py-param">cipher</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">hash</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DevUrandomPool.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DevUrandomPool.__init__-expanded"><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="paramiko.osrandom.BaseOSRandomPool.randomize
+paramiko.osrandom.OSRandomPool.randomize" class="py-name" href="#" onclick="return doclink('link-12', 'randomize', 'link-11');">randomize</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"> </tt>
+<a name="DevUrandomPool.get_bytes"></a><div id="DevUrandomPool.get_bytes-def"><a name="L91"></a><tt class="py-lineno"> 91</tt> <a class="py-toggle" href="#" id="DevUrandomPool.get_bytes-toggle" onclick="return toggle('DevUrandomPool.get_bytes');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.DevUrandomPool-class.html#get_bytes">get_bytes</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">n</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DevUrandomPool.get_bytes-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DevUrandomPool.get_bytes-expanded"><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-name">bytes</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">bytes</tt><tt class="py-op">)</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">n</tt><tt class="py-op">:</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">            <tt class="py-name">bytes</tt> <tt class="py-op">+=</tt> <tt id="link-13" class="py-name"><a title="paramiko.osrandom._dev_urandom" class="py-name" href="#" onclick="return doclink('link-13', '_dev_urandom', 'link-0');">_dev_urandom</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Method paramiko.BufferedFile.read()=paramiko.BufferedFile-class.html#read,Method paramiko.SFTPHandle.read()=paramiko.SFTPHandle-class.html#read,Method paramiko.buffered_pipe.BufferedPipe.read()=paramiko.buffered_pipe.BufferedPipe-class.html#read"><a title="paramiko.BufferedFile.read
+paramiko.SFTPHandle.read
+paramiko.buffered_pipe.BufferedPipe.read" class="py-name" href="#" onclick="return doclink('link-14', 'read', 'link-14');">read</a></tt><tt class="py-op">(</tt><tt class="py-name">n</tt> <tt class="py-op">-</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">bytes</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">bytes</tt> </tt>
+</div></div><a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"> </tt>
+<a name="FallbackRandomPool"></a><div id="FallbackRandomPool-def"><a name="L98"></a><tt class="py-lineno"> 98</tt> <a class="py-toggle" href="#" id="FallbackRandomPool-toggle" onclick="return toggle('FallbackRandomPool');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="paramiko.osrandom.FallbackRandomPool-class.html">FallbackRandomPool</a> <tt class="py-op">(</tt><tt class="py-base-class">BaseOSRandomPool</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FallbackRandomPool-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="FallbackRandomPool-expanded"><a name="FallbackRandomPool.__init__"></a><div id="FallbackRandomPool.__init__-def"><a name="L99"></a><tt class="py-lineno"> 99</tt> <a class="py-toggle" href="#" id="FallbackRandomPool.__init__-toggle" onclick="return toggle('FallbackRandomPool.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.FallbackRandomPool-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FallbackRandomPool.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FallbackRandomPool.__init__-expanded"><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_wr</tt> <tt class="py-op">=</tt> <tt class="py-name">RandomPool</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="paramiko.osrandom.BaseOSRandomPool.randomize
+paramiko.osrandom.OSRandomPool.randomize" class="py-name" href="#" onclick="return doclink('link-15', 'randomize', 'link-11');">randomize</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt>
+<a name="FallbackRandomPool.get_bytes"></a><div id="FallbackRandomPool.get_bytes-def"><a name="L103"></a><tt class="py-lineno">103</tt> <a class="py-toggle" href="#" id="FallbackRandomPool.get_bytes-toggle" onclick="return toggle('FallbackRandomPool.get_bytes');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.FallbackRandomPool-class.html#get_bytes">get_bytes</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">n</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FallbackRandomPool.get_bytes-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="FallbackRandomPool.get_bytes-expanded"><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_wr</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="paramiko.Message.get_bytes
+paramiko.osrandom.DevUrandomPool.get_bytes
+paramiko.osrandom.FallbackRandomPool.get_bytes
+paramiko.osrandom.OSRandomPool.get_bytes" class="py-name" href="#" onclick="return doclink('link-16', 'get_bytes', 'link-6');">get_bytes</a></tt><tt class="py-op">(</tt><tt class="py-name">n</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"><tt class="py-comment">##</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">## Detect default random number source</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">##</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt id="link-17" class="py-name" targets="Variable paramiko.osrandom.osrandom_source=paramiko.osrandom-module.html#osrandom_source"><a title="paramiko.osrandom.osrandom_source" class="py-name" href="#" onclick="return doclink('link-17', 'osrandom_source', 'link-17');">osrandom_source</a></tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"><tt class="py-comment"># Try /dev/urandom</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-keyword">if</tt> <tt id="link-18" class="py-name"><a title="paramiko.osrandom.osrandom_source" class="py-name" href="#" onclick="return doclink('link-18', 'osrandom_source', 'link-17');">osrandom_source</a></tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt> <tt class="py-keyword">and</tt> <tt id="link-19" class="py-name"><a title="paramiko.osrandom._dev_urandom" class="py-name" href="#" onclick="return doclink('link-19', '_dev_urandom', 'link-0');">_dev_urandom</a></tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">    <tt id="link-20" class="py-name"><a title="paramiko.osrandom.osrandom_source" class="py-name" href="#" onclick="return doclink('link-20', 'osrandom_source', 'link-17');">osrandom_source</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"/dev/urandom"</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">    <tt class="py-name">DefaultRandomPoolClass</tt> <tt class="py-op">=</tt> <tt id="link-21" class="py-name" targets="Class paramiko.osrandom.DevUrandomPool=paramiko.osrandom.DevUrandomPool-class.html"><a title="paramiko.osrandom.DevUrandomPool" class="py-name" href="#" onclick="return doclink('link-21', 'DevUrandomPool', 'link-21');">DevUrandomPool</a></tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-comment"># Try winrandom</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-keyword">if</tt> <tt id="link-22" class="py-name"><a title="paramiko.osrandom.osrandom_source" class="py-name" href="#" onclick="return doclink('link-22', 'osrandom_source', 'link-17');">osrandom_source</a></tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt> <tt class="py-keyword">and</tt> <tt id="link-23" class="py-name"><a title="paramiko.osrandom.winrandom" class="py-name" href="#" onclick="return doclink('link-23', 'winrandom', 'link-3');">winrandom</a></tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">    <tt id="link-24" class="py-name"><a title="paramiko.osrandom.osrandom_source" class="py-name" href="#" onclick="return doclink('link-24', 'osrandom_source', 'link-17');">osrandom_source</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"winrandom"</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">    <tt class="py-name">DefaultRandomPoolClass</tt> <tt class="py-op">=</tt> <tt id="link-25" class="py-name" targets="Class paramiko.osrandom.WinRandomPool=paramiko.osrandom.WinRandomPool-class.html"><a title="paramiko.osrandom.WinRandomPool" class="py-name" href="#" onclick="return doclink('link-25', 'WinRandomPool', 'link-25');">WinRandomPool</a></tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"><tt class="py-comment"># Try final fallback</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-keyword">if</tt> <tt id="link-26" class="py-name"><a title="paramiko.osrandom.osrandom_source" class="py-name" href="#" onclick="return doclink('link-26', 'osrandom_source', 'link-17');">osrandom_source</a></tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt> <tt class="py-keyword">and</tt> <tt class="py-name">RandomPool</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">    <tt id="link-27" class="py-name"><a title="paramiko.osrandom.osrandom_source" class="py-name" href="#" onclick="return doclink('link-27', 'osrandom_source', 'link-17');">osrandom_source</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"randompool"</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">    <tt class="py-name">DefaultRandomPoolClass</tt> <tt class="py-op">=</tt> <tt id="link-28" class="py-name" targets="Class paramiko.osrandom.FallbackRandomPool=paramiko.osrandom.FallbackRandomPool-class.html"><a title="paramiko.osrandom.FallbackRandomPool" class="py-name" href="#" onclick="return doclink('link-28', 'FallbackRandomPool', 'link-28');">FallbackRandomPool</a></tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"><tt class="py-comment"># Give up</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-keyword">if</tt> <tt id="link-29" class="py-name"><a title="paramiko.osrandom.osrandom_source" class="py-name" href="#" onclick="return doclink('link-29', 'osrandom_source', 'link-17');">osrandom_source</a></tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">    <tt class="py-keyword">raise</tt> <tt class="py-name">ImportError</tt><tt class="py-op">(</tt><tt class="py-string">"Cannot find OS entropy source"</tt><tt class="py-op">)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"><tt class="py-comment">##</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">## Define wrapper class</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">##</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="OSRandomPool"></a><div id="OSRandomPool-def"><a name="L136"></a><tt class="py-lineno">136</tt> <a class="py-toggle" href="#" id="OSRandomPool-toggle" onclick="return toggle('OSRandomPool');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="paramiko.osrandom.OSRandomPool-class.html">OSRandomPool</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="OSRandomPool-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="OSRandomPool-expanded"><a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">    <tt class="py-docstring">"""RandomPool wrapper.</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"><tt class="py-docstring">    The C{randpool} attribute of this object may be modified by users of this class at runtime.</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"> </tt>
+<a name="OSRandomPool.__init__"></a><div id="OSRandomPool.__init__-def"><a name="L142"></a><tt class="py-lineno">142</tt> <a class="py-toggle" href="#" id="OSRandomPool.__init__-toggle" onclick="return toggle('OSRandomPool.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.OSRandomPool-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">instance</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="OSRandomPool.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="OSRandomPool.__init__-expanded"><a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">instance</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">            <tt class="py-name">instance</tt> <tt class="py-op">=</tt> <tt class="py-name">DefaultRandomPoolClass</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="paramiko.auth_handler.randpool
+paramiko.channel.randpool
+paramiko.client.randpool
+paramiko.common.randpool
+paramiko.dsskey.randpool
+paramiko.hostkeys.randpool
+paramiko.kex_gex.randpool
+paramiko.kex_group1.randpool
+paramiko.packet.randpool
+paramiko.pkey.randpool
+paramiko.rsakey.randpool
+paramiko.server.randpool
+paramiko.sftp.randpool
+paramiko.sftp_attr.randpool
+paramiko.sftp_client.randpool
+paramiko.sftp_file.randpool
+paramiko.sftp_handle.randpool
+paramiko.sftp_server.randpool
+paramiko.sftp_si.randpool
+paramiko.transport.randpool
+paramiko.util.randpool" class="py-name" href="#" onclick="return doclink('link-30', 'randpool', 'link-5');">randpool</a></tt> <tt class="py-op">=</tt> <tt class="py-name">instance</tt> </tt>
+</div><a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"> </tt>
+<a name="OSRandomPool.stir"></a><div id="OSRandomPool.stir-def"><a name="L147"></a><tt class="py-lineno">147</tt> <a class="py-toggle" href="#" id="OSRandomPool.stir-toggle" onclick="return toggle('OSRandomPool.stir');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.OSRandomPool-class.html#stir">stir</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">s</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="OSRandomPool.stir-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="OSRandomPool.stir-expanded"><a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="paramiko.auth_handler.randpool
+paramiko.channel.randpool
+paramiko.client.randpool
+paramiko.common.randpool
+paramiko.dsskey.randpool
+paramiko.hostkeys.randpool
+paramiko.kex_gex.randpool
+paramiko.kex_group1.randpool
+paramiko.packet.randpool
+paramiko.pkey.randpool
+paramiko.rsakey.randpool
+paramiko.server.randpool
+paramiko.sftp.randpool
+paramiko.sftp_attr.randpool
+paramiko.sftp_client.randpool
+paramiko.sftp_file.randpool
+paramiko.sftp_handle.randpool
+paramiko.sftp_server.randpool
+paramiko.sftp_si.randpool
+paramiko.transport.randpool
+paramiko.util.randpool" class="py-name" href="#" onclick="return doclink('link-31', 'randpool', 'link-5');">randpool</a></tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="paramiko.osrandom.BaseOSRandomPool.stir
+paramiko.osrandom.OSRandomPool.stir
+paramiko.osrandom.WinRandomPool.stir" class="py-name" href="#" onclick="return doclink('link-32', 'stir', 'link-7');">stir</a></tt><tt class="py-op">(</tt><tt class="py-name">s</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"> </tt>
+<a name="OSRandomPool.randomize"></a><div id="OSRandomPool.randomize-def"><a name="L150"></a><tt class="py-lineno">150</tt> <a class="py-toggle" href="#" id="OSRandomPool.randomize-toggle" onclick="return toggle('OSRandomPool.randomize');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.OSRandomPool-class.html#randomize">randomize</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">N</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="OSRandomPool.randomize-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="OSRandomPool.randomize-expanded"><a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="paramiko.auth_handler.randpool
+paramiko.channel.randpool
+paramiko.client.randpool
+paramiko.common.randpool
+paramiko.dsskey.randpool
+paramiko.hostkeys.randpool
+paramiko.kex_gex.randpool
+paramiko.kex_group1.randpool
+paramiko.packet.randpool
+paramiko.pkey.randpool
+paramiko.rsakey.randpool
+paramiko.server.randpool
+paramiko.sftp.randpool
+paramiko.sftp_attr.randpool
+paramiko.sftp_client.randpool
+paramiko.sftp_file.randpool
+paramiko.sftp_handle.randpool
+paramiko.sftp_server.randpool
+paramiko.sftp_si.randpool
+paramiko.transport.randpool
+paramiko.util.randpool" class="py-name" href="#" onclick="return doclink('link-33', 'randpool', 'link-5');">randpool</a></tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="paramiko.osrandom.BaseOSRandomPool.randomize
+paramiko.osrandom.OSRandomPool.randomize" class="py-name" href="#" onclick="return doclink('link-34', 'randomize', 'link-11');">randomize</a></tt><tt class="py-op">(</tt><tt class="py-name">N</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"> </tt>
+<a name="OSRandomPool.add_event"></a><div id="OSRandomPool.add_event-def"><a name="L153"></a><tt class="py-lineno">153</tt> <a class="py-toggle" href="#" id="OSRandomPool.add_event-toggle" onclick="return toggle('OSRandomPool.add_event');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.OSRandomPool-class.html#add_event">add_event</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">s</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="OSRandomPool.add_event-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="OSRandomPool.add_event-expanded"><a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="paramiko.auth_handler.randpool
+paramiko.channel.randpool
+paramiko.client.randpool
+paramiko.common.randpool
+paramiko.dsskey.randpool
+paramiko.hostkeys.randpool
+paramiko.kex_gex.randpool
+paramiko.kex_group1.randpool
+paramiko.packet.randpool
+paramiko.pkey.randpool
+paramiko.rsakey.randpool
+paramiko.server.randpool
+paramiko.sftp.randpool
+paramiko.sftp_attr.randpool
+paramiko.sftp_client.randpool
+paramiko.sftp_file.randpool
+paramiko.sftp_handle.randpool
+paramiko.sftp_server.randpool
+paramiko.sftp_si.randpool
+paramiko.transport.randpool
+paramiko.util.randpool" class="py-name" href="#" onclick="return doclink('link-35', 'randpool', 'link-5');">randpool</a></tt><tt class="py-op">.</tt><tt id="link-36" class="py-name" targets="Method paramiko.osrandom.BaseOSRandomPool.add_event()=paramiko.osrandom.BaseOSRandomPool-class.html#add_event,Method paramiko.osrandom.OSRandomPool.add_event()=paramiko.osrandom.OSRandomPool-class.html#add_event"><a title="paramiko.osrandom.BaseOSRandomPool.add_event
+paramiko.osrandom.OSRandomPool.add_event" class="py-name" href="#" onclick="return doclink('link-36', 'add_event', 'link-36');">add_event</a></tt><tt class="py-op">(</tt><tt class="py-name">s</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"> </tt>
+<a name="OSRandomPool.get_bytes"></a><div id="OSRandomPool.get_bytes-def"><a name="L156"></a><tt class="py-lineno">156</tt> <a class="py-toggle" href="#" id="OSRandomPool.get_bytes-toggle" onclick="return toggle('OSRandomPool.get_bytes');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="paramiko.osrandom.OSRandomPool-class.html#get_bytes">get_bytes</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">N</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="OSRandomPool.get_bytes-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="OSRandomPool.get_bytes-expanded"><a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="paramiko.auth_handler.randpool
+paramiko.channel.randpool
+paramiko.client.randpool
+paramiko.common.randpool
+paramiko.dsskey.randpool
+paramiko.hostkeys.randpool
+paramiko.kex_gex.randpool
+paramiko.kex_group1.randpool
+paramiko.packet.randpool
+paramiko.pkey.randpool
+paramiko.rsakey.randpool
+paramiko.server.randpool
+paramiko.sftp.randpool
+paramiko.sftp_attr.randpool
+paramiko.sftp_client.randpool
+paramiko.sftp_file.randpool
+paramiko.sftp_handle.randpool
+paramiko.sftp_server.randpool
+paramiko.sftp_si.randpool
+paramiko.transport.randpool
+paramiko.util.randpool" class="py-name" href="#" onclick="return doclink('link-37', 'randpool', 'link-5');">randpool</a></tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="paramiko.Message.get_bytes
+paramiko.osrandom.DevUrandomPool.get_bytes
+paramiko.osrandom.FallbackRandomPool.get_bytes
+paramiko.osrandom.OSRandomPool.get_bytes" class="py-name" href="#" onclick="return doclink('link-38', 'get_bytes', 'link-6');">get_bytes</a></tt><tt class="py-op">(</tt><tt class="py-name">N</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"><tt class="py-comment"># vim:set ts=4 sw=4 sts=4 expandtab:</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="paramiko-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sun Mar 23 23:59:05 2008
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
