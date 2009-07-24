@@ -1,0 +1,6 @@
+
+Needs access to status.dat:
+sudo chmod o=rx /var/cache/nagios2
+
+apt-get install python-paramiko (>= 1.7.2)
+

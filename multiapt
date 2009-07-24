@@ -1,0 +1,18 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import sys
+
+### you can drop all of these if you have a system-wide installation 
+#import os
+## configure library search path
+#this_path = os.path.split(sys.modules['__main__'].__file__)[0]
+## find our own module
+#sys.path.insert(0, this_path + '/lib') 
+## locally installed paramiko lib goes here
+#sys.path.extend([this_path + '/extlib/paramiko-1.7.3/build/lib'])
+
+# pass control to multiapt Main
+from multiapt.multiapt import Main
+sys.exit(Main.main(sys.argv))
+

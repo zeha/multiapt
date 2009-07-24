@@ -1,0 +1,10 @@
+*.pyc
+config.py
+multiapt\.sh
+build/
+dist/
+debian/multiapt/*
+python-build-stamp-*
+debian/stamp-patched
+debian/files
+debian/tmp/*
