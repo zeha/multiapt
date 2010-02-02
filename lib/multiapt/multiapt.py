@@ -497,29 +497,29 @@ class Main:
         print '  .: Quit'
       else:
         # run upgrade for selected groups
-        upgraders = []
+        upgraders = {}
         for index in answer.split(','):
           try:
-            index = int(index)
-            hg = hostgroups['Group %d' % index]
-            upgraders.append(hg)
+            indexname = 'Group %d' % int(index)
+            upgraders[indexname] = hostgroups[indexname]
           except ValueError:
             print 'E: answer "%s" is not valid, ignoring' % (index)
             continue
           except KeyError:
             print 'E: group %d does not exist, ignoring' % (index)
             continue
-        for hg in upgraders[:]:
-          print 'Upgrading group %d (%s):' % (index, hg.name)
+        for indexname in upgraders.keys():
+          hg = upgraders[indexname]
+          print 'Upgrading %s (%s):' % (indexname, hg.name)
           for host in hg.hosts:
             print '  Upgrading host %s:' % host.name
             host.apt.run_upgrade(self.download_only)
             if not self.download_only:
               self.nagios.reschedule_service_check(host.name, config.apt_service_name)
           try:
-            del hostgroups['Group %d' % index]
+            del hostgroups[indexname]
           except KeyError:
-            print 'E: failed to remove Group %d from list' % index
+            print 'E: failed to remove %s from list' % indexname
         print 'Done upgrading these.'
         #print 'D: successgroups: ', success_groups
         #print 'D: hostgroups: ', hostgroups
