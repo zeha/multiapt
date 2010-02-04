@@ -1,5 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+#
+# Copyright (c) 2010 INQNET GmbH <oss@inqnet.at>
+# Multiapt is licensed under the MIT License. See the file COPYING for the
+# full license text.
+#
 
 import sys
 
