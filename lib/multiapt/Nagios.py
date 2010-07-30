@@ -30,7 +30,7 @@ class Nagios:
 
     # read in service definitions from retention.dat file, one block at a time
     for line in open(config.nagios_statusdat, 'r'):
-      if 'service {' in line:
+      if 'servicestatus {' in line:
         in_service_block = True
         service = dict()
         continue

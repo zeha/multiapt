@@ -5,9 +5,9 @@
 
 # We will now set up the _program default_ configuration
 
-nagios_statusdat = '/var/cache/nagios2/status.dat'
-nagios_objectcache = '/var/cache/nagios2/objects.cache'
-nagios_cmdcgiurl = 'http://localhost/cgi-bin/nagios2/cmd.cgi'
+nagios_statusdat = '/var/cache/nagios3/status.dat'
+nagios_objectcache = '/var/cache/nagios3/objects.cache'
+nagios_cmdcgiurl = 'http://localhost/cgi-bin/nagios3/cmd.cgi'
 nagios_filter_hostnames = None
 apt_service_name = 'APT-Freshness'
 
